@@ -1,0 +1,338 @@
+:root {
+    touch-action: pan-x pan-y;
+    height: 100%;
+
+    --max-width-size: 400px;
+    --grid-size: 7;
+    --padding: 20px;
+    --margin: 50px;
+    --gap-size: .3rem;
+    --border-radius-size: 10px;
+    --tile-size: calc(var(--padding)*2);
+
+    --bg-color: rgb(23, 23, 23);
+    
+    --blue-color: rgb(31, 97, 141);
+    --blue-color-light: rgb(103, 174, 222);
+
+    --red-color: rgb(146, 43, 33);
+    --red-color-light: rgb(222, 119, 110);
+    
+    --green-color: rgb(17, 122, 101);
+    --green-color-light: rgb(64, 228, 195);
+
+    --orange-color: rgb(175, 96, 26);
+    --orange-color-light: rgb(235, 173, 119);
+
+    --font-family: Arial, Helvetica, sans-serif;
+    
+    --font-size-small: 1rem;
+    --font-size-medium: 2rem;
+    --font-size-large: 3rem;
+
+    --opacity-max: 0.8;
+    --opacity-min: 0;
+
+    --animation-duration-short: 1s;
+    --animation-duration-long: 3s;
+}
+
+* {
+    font-family: var(--font-family);
+    color: white;
+}
+
+body {
+    background-color: var(--bg-color);
+}
+
+/* Utils */
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+}
+
+.debug {
+    border: 0px solid red;
+}
+
+.hide {
+    display: none !important;
+}
+
+button {
+    border: none;
+    border-radius: var(--border-radius-size);
+    font-size: var(--font-size-medium);
+    padding: var(--padding);
+    cursor: pointer;
+}
+/* Utils - end*/
+
+.container {
+    margin: 0 auto;
+    max-width: 400px;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+/* Top Menu */
+.top-menu {
+    margin-top: var(--margin);
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: space-evenly;
+}
+
+.info {
+    background-color: aquamarine;
+    padding: var(--padding);
+    border-radius: var(--border-radius-size);
+    color: var(--bg-color);
+}
+/* Top Menu End*/
+
+/* Main Menu */
+.main-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+}
+
+.play-button {
+    background-color: #e60073;
+}
+/* Main Menu End*/
+
+/* Board */
+.board {
+    padding: var(--padding);
+    display: grid;
+    grid-template-rows: repeat(var(--grid-size), auto);
+    gap: calc(var(--gap-size) * 2);
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-size), auto);
+    justify-content: space-evenly;
+    gap: var(--gap-size);
+}
+
+.tile {
+    width: var(--tile-size);
+    height: var(--tile-size);
+    border-radius: var(--border-radius-size);
+    background-color: aliceblue;
+}
+/* Board End*/
+
+/* Controls */
+.controls {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: calc(var(--gap-size)*5);
+    margin: 0 auto var(--margin) auto;
+}
+
+.control-button {
+    width: calc(var(--tile-size)*1.5);
+    height: calc(var(--tile-size)*1.5);
+
+    box-shadow: 0 0 10px white;
+}
+/* Controls End */
+
+/* Toast */
+.toast-container {
+    position: absolute;
+}
+
+.toast {
+    position: fixed;
+    text-align: center;
+    visibility: hidden;
+    border-radius: var(--border-radius-size);
+    padding: var(--padding);
+    max-width: 200px;
+    left: 50%;
+    bottom: 50%;
+    opacity: var(--opacity-min);
+    font-size: var(--font-size-large);
+    box-shadow: 2px 2px 100px var(--bg-color);
+}
+
+.toast.green.show {
+    visibility: visible;
+    -webkit-animation: fadeinout var(--animation-duration-short);
+    animation: fadeinout var(--animation-duration-short);
+}
+
+.toast.red.show {
+    visibility: visible;
+    -webkit-animation: fadeinout var(--animation-duration-long);
+    animation: fadeinout var(--animation-duration-long);
+}
+/* Toast End*/
+
+/* Colors */
+.blue {
+    background-color: var(--blue-color);
+}
+
+.blue-active {
+    background-color: var(--blue-color-light);
+}
+
+.red {
+    background-color: var(--red-color);
+}
+
+.red-active {
+    background-color: var(--red-color-light);
+}
+
+.green {
+    background-color: var(--green-color);
+}
+
+.green-active {
+    background-color: var(--green-color-light);
+}
+
+.orange {
+    background-color: var(--orange-color);
+}
+
+.orange-active {
+    background-color: var(--orange-color-light);
+}
+/* Colors End */
+
+/* Glow effect */
+.glow-blue {
+    -webkit-animation: glow-blue var(--animation-duration-short) ease-in-out infinite alternate;
+    -moz-animation: glow-blue var(--animation-duration-short) ease-in-out infinite alternate;
+    animation: glow-blue var(--animation-duration-short) ease-in-out infinite alternate;
+}
+
+.glow-red {
+    -webkit-animation: glow-red var(--animation-duration-short) ease-in-out infinite alternate;
+    -moz-animation: glow-red var(--animation-duration-short) ease-in-out infinite alternate;
+    animation: glow-red var(--animation-duration-short) ease-in-out infinite alternate;
+}
+
+.glow-green {
+    -webkit-animation: glow-green var(--animation-duration-short) ease-in-out infinite alternate;
+    -moz-animation: glow-green var(--animation-duration-short) ease-in-out infinite alternate;
+    animation: glow-green var(--animation-duration-short) ease-in-out infinite alternate;
+}
+
+.glow-orange {
+    -webkit-animation: glow-orange var(--animation-duration-short) ease-in-out infinite alternate;
+    -moz-animation: glow-orange var(--animation-duration-short) ease-in-out infinite alternate;
+    animation: glow-orange var(--animation-duration-short) ease-in-out infinite alternate;
+}
+/* Glow effect - end*/
+
+/* Animations */
+@keyframes glow-blue {
+    from {
+        box-shadow: 
+            0 0 5px #fff,
+            0 0 5px var(--blue-color),
+            0 0 5px var(--blue-color),
+            0 0 5px var(--blue-color);
+    }
+    to {
+        box-shadow: 
+            0 0 5px #fff, 
+            0 0 5px var(--blue-color-light),
+            0 0 5px var(--blue-color-light), 
+            0 0 5px var(--blue-color-light), 
+            0 0 5px var(--blue-color-light), 
+            0 0 5px var(--blue-color-light);
+    }
+}
+
+@keyframes glow-red {
+    from {
+        box-shadow: 
+            0 0 5px #fff,
+            0 0 5px var(--red-color),
+            0 0 5px var(--red-color),
+            0 0 5px var(--red-color);
+    }
+    to {
+        box-shadow: 
+            0 0 5px #fff, 
+            0 0 5px var(--red-color-light),
+            0 0 5px var(--red-color-light), 
+            0 0 5px var(--red-color-light), 
+            0 0 5px var(--red-color-light), 
+            0 0 5px var(--red-color-light);
+    }
+}
+
+@keyframes glow-green {
+    from {
+        box-shadow: 
+            0 0 5px #fff,
+            0 0 5px var(--green-color),
+            0 0 5px var(--green-color),
+            0 0 5px var(--green-color);
+    }
+    to {
+        box-shadow: 
+            0 0 5px #fff, 
+            0 0 5px var(--green-color-light),
+            0 0 5px var(--green-color-light), 
+            0 0 5px var(--green-color-light), 
+            0 0 5px var(--green-color-light), 
+            0 0 5px var(--green-color-light);
+    }
+}
+
+@keyframes glow-orange {
+    from {
+        box-shadow: 
+            0 0 5px #fff,
+            0 0 5px var(--orange-color),
+            0 0 5px var(--orange-color),
+            0 0 5px var(--orange-color);
+    }
+    to {
+        box-shadow: 
+            0 0 5px #fff, 
+            0 0 5px var(--orange-color-light),
+            0 0 5px var(--orange-color-light), 
+            0 0 5px var(--orange-color-light), 
+            0 0 5px var(--orange-color-light), 
+            0 0 5px var(--orange-color-light);
+    }
+}
+
+@keyframes fadeinout {
+    0% {
+        opacity: var(--opacity-min);
+    }
+
+    50% {
+        opacity: var(--opacity-max);
+    }
+
+    100% {
+        opacity: var(--opacity-min);
+    }
+}
+/* Animations End*/
